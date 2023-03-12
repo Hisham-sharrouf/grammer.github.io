@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formal English Correction</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var inputText = '';
+        // Send POST request to server on input change
+        $('#input_text').on('input', function() {
+          inputText = $(this).val();
+          $.ajax({
+            type: 'POST',
+            url: '/',
+            data: { input_text: inputText },
+            success: function(response) {
+              // Display output text on page
+              var extractedElement = $(response).filter('#output_text');
+
+              // Display the extracted element on the page
+              $('#output_text').html(extractedElement);
+              
+              
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              // Display error message on page
+              $('#error_message').text(errorThrown);
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Formal English Correction</h1>
+    <label for="input_text">Input text:</label><br>
+    <textarea id="input_text" name="input_text" rows="4" cols="50"></textarea>
+    <div id="output_text">{{output_text}} </div>
+    <div id="error_message"></div>
+  </body>
+</html>
