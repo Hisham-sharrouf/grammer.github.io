@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def process_text():
     if request.method == 'POST':
-        key = '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'
+        key = ''
         openai.api_key = key
         input_text = request.form['input_text']
         try:
