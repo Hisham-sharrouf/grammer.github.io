@@ -1,0 +1,5 @@
+# required
+readme_renderer
+openai==0.6.4
+Flask==2.0.1
+requests==2.25.1
